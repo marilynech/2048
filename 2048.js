@@ -4,10 +4,17 @@ var rows = 4;
 var columns = 4; 
 
 window.onload = function() {
+    console.log("Game is starting..."); //debugging
     setGame(); 
-}
+}; 
 
 function setGame(){
+    console.log("Setting up the game.. ");
+    let boardElement = document.getElementById("board"); 
+    if (!boardElement) {
+        console.error("ERROR: #board element not found!");
+        return;
+    }
     //board = [
     //[0,0,0,0],
     //[0,0,0,0],
@@ -25,11 +32,14 @@ function setGame(){
         for(let c = 0; c < columns; c++){
             //create a new div
             let tile = document.createElement("div");
-            tile.id = r.toString() + "-" + c.toString();
+            //tile.id = r.toString() + "-" + c.toString();
+            tile.id = `${r}-${c}`;
             let num = board[r][c];
             //need to update style everytime we slide
-            updateTile(tile,num);
-            document.getElementById("board").append(tile); 
+            //updateTile(tile,num);
+            updateTile(tile, board[r][c]);
+            //document.getElementById("board").append(tile); 
+            boardElement.appendChild(tile);
         }
     }
 
